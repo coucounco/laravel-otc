@@ -1,9 +1,8 @@
 # Laravel One Time Code Authentication
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/rohsyl/laravel-otc.svg?style=flat-square)](https://packagist.org/packages/rohsyl/laravel-otc)
-[![CI](https://github.com/rohsyl/laravel-otc/actions/workflows/ci.yml/badge.svg)](https://github.com/rohsyl/laravel-otc/actions/workflows/ci.yml)
-[![Quality Score](https://img.shields.io/scrutinizer/g/rohsyl/laravel-otc.svg?style=flat-square)](https://scrutinizer-ci.com/g/rohsyl/laravel-otc)
-[![Total Downloads](https://img.shields.io/packagist/dt/rohsyl/laravel-otc.svg?style=flat-square)](https://packagist.org/packages/rohsyl/laravel-otc)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/coucounco/laravel-otc.svg?style=flat-square)](https://packagist.org/packages/coucounco/laravel-otc)
+[![CI](https://github.com/coucounco/laravel-otc/actions/workflows/ci.yml/badge.svg)](https://github.com/coucounco/laravel-otc/actions/workflows/ci.yml)
+[![Total Downloads](https://img.shields.io/packagist/dt/coucounco/laravel-otc.svg?style=flat-square)](https://packagist.org/packages/coucounco/laravel-otc)
 
 
 Laravel One Time Code Authentication allow you to send by mail an one time code to auth your users.
