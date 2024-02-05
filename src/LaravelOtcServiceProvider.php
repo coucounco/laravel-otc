@@ -27,7 +27,8 @@ class LaravelOtcServiceProvider extends PackageServiceProvider
             //->hasViews()
             ->hasRoute('web')
             ->hasMigrations([
-                'create_otc_tokens_table'
+                'create_otc_tokens_table',
+                'add_identifier_to_otc_tokens_table'
             ])
             ->hasInstallCommand(function(InstallCommand $command) {
                 $command

@@ -12,7 +12,7 @@ class OneTimeCodeNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
-    private $token;
+    protected $token;
 
     public function __construct(OtcToken $token)
     {

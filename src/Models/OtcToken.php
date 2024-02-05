@@ -13,6 +13,7 @@ class OtcToken extends Model
     public $fillable = [
         'related_id',
         'related_type',
+        'identifier',
         'code',
         'code_valid_until',
         'token',

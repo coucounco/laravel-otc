@@ -104,18 +104,37 @@ class LaravelOtcManager
         return abort(401);
     }
 
-    public function storeCode(Model $related, $code) : OtcToken
+    public function storeCode(Model|string $related, $code) : OtcToken
     {
-        return OtcToken::create([
-            'related_type' => get_class($related),
-            'related_id' => $related->id,
-            'ip' => $this->getRequest()->ip(),
-            'code' => $code,
-            'code_valid_until' => now()->addMinutes(30),
-        ]);
+        if(is_string($related)) {
+            $slug = $this->getRequest()->type;
+            $modelClass = config('otc.authenticatables.' . $slug . '.model');
+            $inputs = [
+                'related_type' => $modelClass,
+                'identifier' => $related
+            ];
+        }
+        else {
+            $inputs = [
+                'related_type' => get_class($related),
+                'related_id' => $related->id,
+            ];
+        }
+
+
+        return OtcToken::create(
+            array_merge(
+                $inputs,
+                [
+                    'ip' => $this->getRequest()->ip(),
+                    'code' => $code,
+                    'code_valid_until' => now()->addMinutes(30),
+                ]
+            )
+        );
     }
 
-    public function getModel() : ?Model
+    public function getModel() : Model|string|null
     {
         $slug = $this->getRequest()->type;
         $identifier = $this->getRequest()->identifier;
@@ -123,16 +142,25 @@ class LaravelOtcManager
         $modelClass = config('otc.authenticatables.' . $slug . '.model');
         $identifierColumn = config('otc.authenticatables.' . $slug . '.identifier');
 
+        // try to find the model from the database
         if(str_contains($identifierColumn, '.')) {
             [$identifierRelation, $identifierColumn] = explode('.', $identifierColumn);
 
-            return call_user_func_array([$modelClass, 'query'], [])
+            $result = call_user_func_array([$modelClass, 'query'], [])
                 ->whereHas($identifierRelation, fn($q) => $q->where($identifierColumn, $identifier))
                 ->first();
         }
         else {
-            return call_user_func_array([$modelClass, 'query'], [])->where($identifierColumn, $identifier)->first();
+            $result = call_user_func_array([$modelClass, 'query'], [])->where($identifierColumn, $identifier)->first();
         }
+
+        // if no result found in the database and the register feature is enabled,
+        // we allow to send a mail to an unregistered user
+        if(!isset($result) && $this->isRegisterable()) {
+            $result = $identifier;
+        }
+
+        return $result;
 
     }
 
@@ -145,7 +173,7 @@ class LaravelOtcManager
             && $token->code_valid_until->isAfter(now());
     }
 
-    public function createCode(Model $related)
+    public function createCode(Model|string $related)
     {
         $code = $this->generator->generate();
         return $this->storeCode($related, $code);
@@ -154,6 +182,8 @@ class LaravelOtcManager
     public function createToken(OtcToken $token)
     {
         $token->update([
+            'code_valid_unit' => now(),
+
             'token' => Str::random(64),
             'token_valid_until' => now()->addDays(30),
         ]);
@@ -165,12 +195,8 @@ class LaravelOtcManager
 
         // if we cant find the related model
         if(!isset($related)) {
-            // and the register is not allowed, we abort
-            if(!$this->isRegisterable()) {
-                abort(403);
-            }
+            abort(403);
         }
-
 
         $token = $token ?? $this->createCode($related);
 
@@ -182,10 +208,18 @@ class LaravelOtcManager
         if(!isset($notificationClass) || !class_exists($notificationClass)) {
             $notificationClass = OneTimeCodeNotification::class;
         }
-        call_user_func_array(
-            [$notifierClass, 'sendNow'],
-            [$related, new $notificationClass($token)]
-        );
+        if(!is_string($related)) {
+            call_user_func_array(
+                [$notifierClass, 'sendNow'],
+                [$related, new $notificationClass($token)]
+            );
+        }
+        else {
+            call_user_func_array(
+                [$notifierClass, 'route'],
+                ['mail', $related]
+            )->notify(new $notificationClass($token));
+        }
     }
 
     private function findOtcTokenByToken(string $token) : ?OtcToken
@@ -196,26 +230,25 @@ class LaravelOtcManager
             ->first();
     }
 
-    public function findOtcTokenByRelatedAndCode(Model $related, $code) : ?OtcToken
+    public function findOtcTokenByRelatedAndCode(Model|string $related, $code) : ?OtcToken
     {
         return OtcToken::query()
-            ->where('related_id', $related->id)
-            ->where('related_type', get_class($related))
+            ->when(is_string($related), function($q) use ($related) {
+                $slug = $this->getRequest()->type;
+                $modelClass = config('otc.authenticatables.' . $slug . '.model');
+                $q
+                    ->where('related_type', $modelClass)
+                    ->where('identifier', $related);
+            }, function($q) use ($related) {
+                $q
+                    ->where('related_id', $related->id)
+                    ->where('related_type', get_class($related));
+            })
             ->where('ip', $this->getRequest()->ip())
             ->where('code', $code)
             ->latest()
             ->first();
     }
-
-    /*private function findOtcTokenByRelated(Model $related) : ?OtcToken
-    {
-        return OtcToken::query()
-            ->where('related_id', $related->id)
-            ->where('related_type', get_class($related))
-            ->where('id', $this->getRequest()->ip())
-            ->latest()
-            ->first();
-    }*/
 
     private function getModelSlug(Model $related) {
         $authenticatables = config('otc.authenticatables');
