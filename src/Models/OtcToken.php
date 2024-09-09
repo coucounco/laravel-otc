@@ -1,10 +1,10 @@
 <?php
 
-namespace rohsyl\LaravelOtc\Models;
+namespace coucounco\LaravelOtc\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use rohsyl\LaravelOtc\Database\Factories\OtcTokenFactory;
+use coucounco\LaravelOtc\Database\Factories\OtcTokenFactory;
 
 class OtcToken extends Model
 {

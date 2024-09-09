@@ -1,8 +1,8 @@
 <?php
-namespace rohsyl\LaravelOtc\Database\Factories;
+namespace coucounco\LaravelOtc\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use rohsyl\LaravelOtc\Models\OtcToken;
+use coucounco\LaravelOtc\Models\OtcToken;
 
 class OtcTokenFactory extends Factory
 {

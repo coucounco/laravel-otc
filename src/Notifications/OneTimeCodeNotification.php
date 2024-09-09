@@ -1,12 +1,12 @@
 <?php
 
-namespace rohsyl\LaravelOtc\Notifications;
+namespace coucounco\LaravelOtc\Notifications;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
-use rohsyl\LaravelOtc\Models\OtcToken;
+use coucounco\LaravelOtc\Models\OtcToken;
 
 class OneTimeCodeNotification extends Notification implements ShouldQueue
 {

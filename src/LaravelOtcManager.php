@@ -1,13 +1,13 @@
 <?php
 
-namespace rohsyl\LaravelOtc;
+namespace coucounco\LaravelOtc;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Str;
-use rohsyl\LaravelOtc\Generators\GeneratorContract;
-use rohsyl\LaravelOtc\Models\OtcToken;
-use rohsyl\LaravelOtc\Notifications\OneTimeCodeNotification;
+use coucounco\LaravelOtc\Generators\GeneratorContract;
+use coucounco\LaravelOtc\Models\OtcToken;
+use coucounco\LaravelOtc\Notifications\OneTimeCodeNotification;
 use Symfony\Component\HttpFoundation\Response;
 
 class LaravelOtcManager

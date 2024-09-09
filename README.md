@@ -12,7 +12,7 @@ Laravel One Time Code Authentication allow you to send by mail an one time code 
 You can install the package via composer:
 
 ```bash
-composer require rohsyl/laravel-otc
+composer require coucounco/laravel-otc
 ```
 
 Run the installer
@@ -27,7 +27,7 @@ Edit `config/otc.php`
 ```php
 return [
     'notifier_class' => \Illuminate\Support\Facades\Notification::class,
-    'notification_class' => \rohsyl\LaravelOtc\Notifications\OneTimeCodeNotification::class,
+    'notification_class' => \coucounco\LaravelOtc\Notifications\OneTimeCodeNotification::class,
 
     'authenticatables' => [
         'user' => [
@@ -47,7 +47,7 @@ Define what class will be called to send the notification. By default it use the
 ### notification_class
 Define what notification will be sent.
 ```
-'notification_class' => \rohsyl\LaravelOtc\Notifications\OneTimeCodeNotification::class,
+'notification_class' => \coucounco\LaravelOtc\Notifications\OneTimeCodeNotification::class,
 ```
 
 You can replace this class by any other notification, you will recieve a `OtcToken $token` as constructor parameters
@@ -96,7 +96,7 @@ if(!Otc::check()) {
 This response will return 401 http error with the following body.
 ```json
 {
-    "request_code_url": ".../vendor/rohsyl/laravel-otc/auth/request-code",
+    "request_code_url": ".../vendor/coucounco/laravel-otc/auth/request-code",
     "request_code_body": {
         "type": "user",
         "identifier": "test@test.com"
@@ -108,7 +108,7 @@ You must use the `request_code_url` as the url to request a code (ye seem obviou
 ### Request a code
 Send a post request
 ```
-POST /vendor/rohsyl/laravel-otc/auth/request-code
+POST /vendor/coucounco/laravel-otc/auth/request-code
 ```
 with body
 ```json
@@ -124,7 +124,7 @@ An email will be sent to the corresponding entity if available. The email will c
 ### Request a token
 Send a post request
 ```
-POST /vendor/rohsyl/laravel-otc/auth/code
+POST /vendor/coucounco/laravel-otc/auth/code
 ```
 with body
 ```json
@@ -170,7 +170,7 @@ You will need to add a new path in your `config/cors.php` in the `paths` array
 ```
     'paths' => [
         // ...
-        'vendor/rohsyl/laravel-otc/*',
+        'vendor/coucounco/laravel-otc/*',
     ],
 ```
 
@@ -194,7 +194,7 @@ If you discover any security related issues, please use the issue tracker.
 
 ## Credits
 
-- [rohsyl](https://github.com/rohsyl)
+- [coucounco](https://github.com/coucounco)
 - [All Contributors](../../contributors)
 
 

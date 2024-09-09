@@ -2,29 +2,29 @@
     "name": "coucounco/laravel-otc",
     "description": "Laravel One Time Code Authentication",
     "keywords": [
-        "rohsyl",
+        "coucounco",
         "laravel",
         "laravel-otc"
     ],
-    "homepage": "https://github.com/rohsyl/laravel-otc",
+    "homepage": "https://github.com/coucounco/laravel-otc",
     "license": "MIT",
     "authors": [
         {
-            "name": "rohsyl",
-            "email": "syzin12@gmail.com",
+            "name": "coucounco",
+            "email": "dev@coucounco.ch",
             "role": "Developer"
         }
     ],
     "require": {
-        "php": ">=8.0.2",
+        "php": ">=8.1.0",
         "spatie/laravel-package-tools": "^1.13.0",
-        "illuminate/contracts": "^9.0"
+        "illuminate/contracts": "^10.0"
     },
     "require-dev": {
         "laravel/pint": "^1.0",
         "nunomaduro/collision": "^6.1",
         "nunomaduro/larastan": "^2.0.1",
-        "orchestra/testbench": "^7.0",
+        "orchestra/testbench": "^8.0",
         "pestphp/pest": "^1.21",
         "pestphp/pest-plugin-laravel": "^1.1",
         "phpstan/extension-installer": "^1.1",
@@ -35,13 +35,13 @@
     },
     "autoload": {
         "psr-4": {
-            "rohsyl\\LaravelOtc\\": "src",
-            "rohsyl\\LaravelOtc\\Database\\Factories\\": "database/factories"
+            "coucounco\\LaravelOtc\\": "src",
+            "coucounco\\LaravelOtc\\Database\\Factories\\": "database/factories"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "rohsyl\\LaravelOtc\\Tests\\": "tests"
+            "coucounco\\LaravelOtc\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -62,10 +62,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "rohsyl\\LaravelOtc\\LaravelOtcServiceProvider"
+                "coucounco\\LaravelOtc\\LaravelOtcServiceProvider"
             ],
             "aliases": {
-                "Otc": "rohsyl\\LaravelOtc\\Otc"
+                "Otc": "coucounco\\LaravelOtc\\Otc"
             }
         }
     },

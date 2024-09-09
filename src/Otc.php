@@ -1,6 +1,6 @@
 <?php
 
-namespace rohsyl\LaravelOtc;
+namespace coucounco\LaravelOtc;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Facade;

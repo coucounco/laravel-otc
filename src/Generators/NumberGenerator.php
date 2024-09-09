@@ -1,6 +1,6 @@
 <?php
 
-namespace rohsyl\LaravelOtc\Generators;
+namespace coucounco\LaravelOtc\Generators;
 
 final class NumberGenerator implements GeneratorContract
 {

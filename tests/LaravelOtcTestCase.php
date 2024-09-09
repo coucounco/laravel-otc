@@ -1,10 +1,10 @@
 <?php
 
-namespace rohsyl\LaravelOtc\Tests;
+namespace coucounco\LaravelOtc\Tests;
 
 use Orchestra\Testbench\TestCase;
-use rohsyl\LaravelOtc\LaravelOtcServiceProvider;
-use rohsyl\LaravelOtc\Tests\Models\User;
+use coucounco\LaravelOtc\LaravelOtcServiceProvider;
+use coucounco\LaravelOtc\Tests\Models\User;
 
 class LaravelOtcTestCase extends TestCase
 {

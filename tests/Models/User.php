@@ -1,6 +1,6 @@
 <?php
 
-namespace rohsyl\LaravelOtc\Tests\Models;
+namespace coucounco\LaravelOtc\Tests\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;

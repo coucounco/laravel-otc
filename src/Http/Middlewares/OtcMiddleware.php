@@ -1,10 +1,10 @@
 <?php
 
-namespace rohsyl\LaravelOtc\Http\Middlewares;
+namespace coucounco\LaravelOtc\Http\Middlewares;
 
 use Closure;
 use Illuminate\Http\Client\HttpClientException;
-use rohsyl\LaravelOtc\Otc;
+use coucounco\LaravelOtc\Otc;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class OtcMiddleware

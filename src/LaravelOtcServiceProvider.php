@@ -1,15 +1,15 @@
 <?php
 
-namespace rohsyl\LaravelOtc;
+namespace coucounco\LaravelOtc;
 
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Support\Facades\RateLimiter;
-use rohsyl\LaravelOtc\Generators\GeneratorContract;
-use rohsyl\LaravelOtc\Generators\NumberGenerator;
+use coucounco\LaravelOtc\Generators\GeneratorContract;
+use coucounco\LaravelOtc\Generators\NumberGenerator;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 use Spatie\LaravelPackageTools\Commands\InstallCommand;
-use rohsyl\LaravelOtc\Http\Middlewares\OtcMiddleware;
+use coucounco\LaravelOtc\Http\Middlewares\OtcMiddleware;
 
 class LaravelOtcServiceProvider extends PackageServiceProvider
 {
@@ -35,7 +35,7 @@ class LaravelOtcServiceProvider extends PackageServiceProvider
                     ->publishConfigFile()
                     ->publishMigrations()
                     ->askToRunMigrations()
-                    ->askToStarRepoOnGitHub('rohsyl/laravel-otc');
+                    ->askToStarRepoOnGitHub('coucounco/laravel-otc');
             });
     }
 

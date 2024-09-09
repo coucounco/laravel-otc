@@ -1,13 +1,13 @@
 <?php
 
-namespace rohsyl\LaravelOtc\Http\Controllers;
+namespace coucounco\LaravelOtc\Http\Controllers;
 
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Route;
-use rohsyl\LaravelOtc\Generators\GeneratorContract;
-use rohsyl\LaravelOtc\LaravelOtcManager;
-use rohsyl\LaravelOtc\Notifications\OneTimeCodeNotification;
+use coucounco\LaravelOtc\Generators\GeneratorContract;
+use coucounco\LaravelOtc\LaravelOtcManager;
+use coucounco\LaravelOtc\Notifications\OneTimeCodeNotification;
 use function PHPUnit\Framework\callback;
 
 class RequestCodeController extends Controller

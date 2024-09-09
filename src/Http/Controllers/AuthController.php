@@ -1,9 +1,9 @@
 <?php
 
-namespace rohsyl\LaravelOtc\Http\Controllers;
+namespace coucounco\LaravelOtc\Http\Controllers;
 
 use Illuminate\Routing\Controller;
-use rohsyl\LaravelOtc\LaravelOtcManager;
+use coucounco\LaravelOtc\LaravelOtcManager;
 
 class AuthController extends Controller
 {

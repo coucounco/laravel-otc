@@ -1,17 +1,17 @@
 <?php
 
-namespace rohsyl\LaravelOtc\Tests;
+namespace coucounco\LaravelOtc\Tests;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Request;
-use rohsyl\LaravelOtc\Generators\NumberGenerator;
-use rohsyl\LaravelOtc\LaravelOtcManager;
-use rohsyl\LaravelOtc\Models\OtcToken;
-use rohsyl\LaravelOtc\Notifications\OneTimeCodeNotification;
-use rohsyl\LaravelOtc\Otc;
-use rohsyl\LaravelOtc\Tests\Models\User;
+use coucounco\LaravelOtc\Generators\NumberGenerator;
+use coucounco\LaravelOtc\LaravelOtcManager;
+use coucounco\LaravelOtc\Models\OtcToken;
+use coucounco\LaravelOtc\Notifications\OneTimeCodeNotification;
+use coucounco\LaravelOtc\Otc;
+use coucounco\LaravelOtc\Tests\Models\User;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class OtcTest extends LaravelOtcTestCase
